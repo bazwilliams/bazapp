@@ -50,8 +50,8 @@ article > div {
 .consonent {
 	text-transform: lowercase;
 	color: #FFFFFF;
-	background-color: #00FF00;
-	border-color: #00AA00 #00BB00 #007700 #006600;
+	background-color: #00AA00;
+	border-color: #008800 #009900 #005500 #004400;
 }
 
 .vowel {

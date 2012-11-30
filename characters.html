@@ -64,6 +64,8 @@
     FlashcardView = Backbone.View.extend({
         template: Handlebars.compile($("#key-template").html()),
 
+        failedAttempts : 0,
+
         initialize: function () {
             this.render();
         },
@@ -77,17 +79,26 @@
 
     PageView = Backbone.View.extend({
         initialize: function () {
-            var self, scoresView;
+            var self, scoresView, keyReleased;
+
+            keyreleased = true;
 
             self = this;
             $(document).keydown('keydown.flashcard', function (e) {
                 var code, character;
                 e.preventDefault();
-                code = (e.keyCode ? e.keyCode : e.which);
-                character = String.fromCharCode(code);
-                if (self.updateScore(character)) {
-                    self.displayNewCard();
+                if (keyReleased) {
+                    keyReleased = false;
+                    code = (e.keyCode ? e.keyCode : e.which);
+                    character = String.fromCharCode(code);
+                    if (self.updateScore(character)) {
+                        self.displayNewCard();
+                    }
                 }
+            });
+
+            $(document).keyup('keyup.flashcard', function (e) {
+                keyReleased = true;
             });
 
             scoresView = new ScoresView({
@@ -104,11 +115,18 @@
             if (characterPressed === this.currentView.model.get('character')) {
                 success = this.currentView.model.get('success')+1;
                 this.currentView.model.set('success',success);
+                this.collection.sort();
                 return true;
             }
             else {
-                failure = this.currentView.model.get('failure')+1;
-                this.currentView.model.set('failure',failure);
+                if (this.currentView.failedAttempts === 0) {
+                    failure = this.currentView.model.get('failure')+1;
+                    this.currentView.model.set('failure',failure);
+                    this.collection.sort();
+                } else if (this.currentView.failedAttempts === 3) {
+                    return true;
+                }
+                this.currentView.failedAttempts++;
                 return false;
             }
         },
@@ -137,7 +155,7 @@
 
     FlashcardCollection = Backbone.Collection.extend({
         model: FlashcardModel,
-		
+
 		comparator : function(modelA, modelB) {
 			var a,b;
 			if (modelA && modelB) {

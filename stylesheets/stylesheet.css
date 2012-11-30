@@ -1,22 +1,17 @@
 body {
 	font-family: Comic Sans, Comic Sans MS, cursive;
-	background-color: #F0F0F0;
+	background-color: #FFEEDD;
 	margin: 0px;
 	padding: 0px;
 }
 
 section {
 	padding: 20px;
-	background-color: #FFEEDD;
-	width: 800px;
 	clear: both;
-	margin-left: auto;
-	margin-right: auto;
 }
 
 article {
-	padding-top: 20px;
-	width: 600px;
+	width:425px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -34,6 +29,7 @@ article > div {
 	width: 105px;
 	padding-top:20px;
 	padding-bottom: 20px;
+	display: none;
 }
 
 #key {

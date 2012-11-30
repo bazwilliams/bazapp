@@ -12,5 +12,5 @@ The release version (gh-page branch) of the application can be viewed at:
 http://bazwilliams.github.com/bazapp/characters.html
 
 Todo:
-* I found my son was holding keys down for too long which fired multiple key events
-* I found my son occasionally got distracted and would start pressing keys randomly which skewed the scoring
+* [Fixed] I found my son was holding keys down for too long which fired multiple key events
+* [Fixed] I found my son occasionally got distracted and would start pressing keys randomly which skewed the scoring

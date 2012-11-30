@@ -1,7 +1,5 @@
-bazapp
-======
-
-Various Web Applications
+Bazapp Web Applications
+=======================
 
 Characters
 ==========

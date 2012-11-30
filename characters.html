@@ -8,14 +8,8 @@
 <section>
     <article>
         <script id="scores-template" type="text/x-handlebars-template">
-            <div id="scores">
-                {{#each this}}
-                <div class="entry">
-                    <span class="character">{{character}}</span>
-                    <span class="success">{{success}}</span>
-                    <span class="failure">{{failure}}</span>
-                </div>
-                {{/each}}
+            <div class="attempt-{{attempt}}" id="scores">
+                    <span>{{score}}</span>
             </div>
         </script>
 
@@ -42,6 +36,10 @@
             failure: 0,
             type: '',
             character: ''
+        },
+
+        getScore: function() {
+            return this.get('success') - this.get('failure');
         }
     });
 
@@ -54,7 +52,10 @@
         },
 
         render: function() {
-            var templateResult = this.template(this.collection.toJSON());
+            var templateResult = this.template({
+                score : this.collection.getScore(),
+                attempt : this.collection.attempt
+            });
             $(this.el).empty();
             $(this.el).append(templateResult);
             return this;
@@ -63,8 +64,6 @@
 
     FlashcardView = Backbone.View.extend({
         template: Handlebars.compile($("#key-template").html()),
-
-        failedAttempts : 0,
 
         initialize: function () {
             this.render();
@@ -91,8 +90,12 @@
                     keyReleased = false;
                     code = (e.keyCode ? e.keyCode : e.which);
                     character = String.fromCharCode(code);
-                    if (self.updateScore(character)) {
-                        self.displayNewCard();
+                    if (self.collection.get(character)) {
+                        self.collection.attempt++;
+                        if (self.updateScore(character)) {
+                            self.displayNewCard();
+                        }
+                        scoresView.render();
                     }
                 }
             });
@@ -119,14 +122,13 @@
                 return true;
             }
             else {
-                if (this.currentView.failedAttempts === 0) {
+                if (this.collection.attempt === 1) {
                     failure = this.currentView.model.get('failure')+1;
                     this.currentView.model.set('failure',failure);
                     this.collection.sort();
-                } else if (this.currentView.failedAttempts === 3) {
+                } else if (this.collection.attempt > 2) {
                     return true;
                 }
-                this.currentView.failedAttempts++;
                 return false;
             }
         },
@@ -156,11 +158,21 @@
     FlashcardCollection = Backbone.Collection.extend({
         model: FlashcardModel,
 
+        attempt : 0,
+
+        getScore : function() {
+            var score = 0;
+            this.each(function(model) {
+                score += model.getScore();
+            });
+            return score;
+        },
+
 		comparator : function(modelA, modelB) {
 			var a,b;
 			if (modelA && modelB) {
-			    a = modelA.get('success') - modelA.get('failure');
-			    b = modelB.get('success') - modelB.get('failure');
+			    a = modelA.getScore();
+			    b = modelB.getScore();
 				if ( a < b ) {
 					return -1;
 				}
@@ -174,6 +186,7 @@
         getNextCard: function() {
             var nextId;
             nextId=Math.floor(Math.pow(Math.random(),1.5)*this.length)
+            this.attempt = 0;
             return this.at(nextId);
         }
     });

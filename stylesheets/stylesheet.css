@@ -11,7 +11,7 @@ section {
 }
 
 article {
-	width:425px;
+	width:435px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -22,14 +22,29 @@ article > div {
 }
 
 #scores {
-	font-size: 0.5em;
+	font-size: 2em;
 	text-align: center;
 	margin-left: 5px;
 	margin-right: 5px;
-	width: 105px;
+	width: 135px;
 	padding-top:20px;
 	padding-bottom: 20px;
+	border-radius:25px;
+	border-style:solid;
+	border-width:5px;
 	display: none;
+}
+
+.attempt-0 {
+	border-color: black;
+}
+
+.attempt-1 {
+	border-color: yellow;
+}
+
+.attempt-2 {
+	border-color: red;
 }
 
 #key {

@@ -6,7 +6,6 @@
 <body>
 
 <section>
-
     <article>
         <script id="scores-template" type="text/x-handlebars-template">
             <div id="scores">
@@ -20,7 +19,7 @@
             </div>
         </script>
 
-        <script id="flashcard-template" type="text/x-handlebars-template">
+        <script id="key-template" type="text/x-handlebars-template">
             <div id="key" class="{{type}}">
                 <span id="keydisplay">{{character}}</span>
             </div>
@@ -63,7 +62,7 @@
     })
 
     FlashcardView = Backbone.View.extend({
-        template: Handlebars.compile($("#flashcard-template").html()),
+        template: Handlebars.compile($("#key-template").html()),
 
         initialize: function () {
             this.render();

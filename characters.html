@@ -141,8 +141,8 @@
 		comparator : function(modelA, modelB) {
 			var a,b;
 			if (modelA && modelB) {
-				a = modelA.get('character');
-				b = modelB.get('character');
+			    a = modelA.get('success') - modelA.get('failure');
+			    b = modelB.get('success') - modelB.get('failure');
 				if ( a < b ) {
 					return -1;
 				}
@@ -155,7 +155,7 @@
 		
         getNextCard: function() {
             var nextId;
-            nextId=Math.floor(Math.random()*this.length)
+            nextId=Math.floor(Math.pow(Math.random(),1.5)*this.length)
             return this.at(nextId);
         }
     });

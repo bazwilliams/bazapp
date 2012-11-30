@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="stylesheets/stylesheet.css" media="screen">
+</head>
+<body>
+
+<section>
+
+    <article>
+        <script id="scores-template" type="text/x-handlebars-template">
+            <div id="scores">
+                {{#each this}}
+                <div class="entry">
+                    <span class="character">{{character}}</span>
+                    <span class="success">{{success}}</span>
+                    <span class="failure">{{failure}}</span>
+                </div>
+                {{/each}}
+            </div>
+        </script>
+
+        <script id="flashcard-template" type="text/x-handlebars-template">
+            <div id="key" class="{{type}}">
+                <span id="keydisplay">{{character}}</span>
+            </div>
+        </script>
+    </article>
+</section>
+
+<script src="scripts/jquery-1.8.2.min.js"></script>
+<script src="scripts/handlebars-1.0.rc.1.js"></script>
+<script src="scripts/underscore-min.js"></script>
+<script src="scripts/backbone-min.js"></script>
+
+<script>
+(function () {
+    var FlashcardModel, ScoresView, FlashcardView, PageView, FlashcardCollection, cardCollection, addCards;
+
+    FlashcardModel = Backbone.Model.extend({
+        defaults: {
+            success: 0,
+            failure: 0,
+            type: '',
+            character: ''
+        }
+    });
+
+    ScoresView = Backbone.View.extend({
+        template: Handlebars.compile($("#scores-template").html()),
+
+        initialize: function() {
+            this.collection.bind('change', this.render, this);
+            this.render();
+        },
+
+        render: function() {
+            var templateResult = this.template(this.collection.toJSON());
+            $(this.el).empty();
+            $(this.el).append(templateResult);
+            return this;
+        }
+    })
+
+    FlashcardView = Backbone.View.extend({
+        template: Handlebars.compile($("#flashcard-template").html()),
+
+        initialize: function () {
+            this.render();
+        },
+
+        render: function () {
+            var templateResult = this.template(this.model.toJSON());
+            $(this.el).append(templateResult);
+            return this;
+        }
+    });
+
+    PageView = Backbone.View.extend({
+        initialize: function () {
+            var self, scoresView;
+
+            self = this;
+            $(document).keydown('keydown.flashcard', function (e) {
+                var code, character;
+                e.preventDefault();
+                code = (e.keyCode ? e.keyCode : e.which);
+                character = String.fromCharCode(code);
+                if (self.updateScore(character)) {
+                    self.displayNewCard();
+                }
+            });
+
+            scoresView = new ScoresView({
+                collection : cardCollection
+            })
+
+            this.$el.append(scoresView.el);
+
+            this.displayNewCard();
+        },
+
+        updateScore: function(characterPressed) {
+            var success, failure;
+            if (characterPressed === this.currentView.model.get('character')) {
+                success = this.currentView.model.get('success')+1;
+                this.currentView.model.set('success',success);
+                return true;
+            }
+            else {
+                failure = this.currentView.model.get('failure')+1;
+                this.currentView.model.set('failure',failure);
+                return false;
+            }
+        },
+
+        displayNewCard: function() {
+            var newCardModel = this.collection.getNextCard();
+            if (newCardModel) {
+                this.replaceCard(newCardModel);
+            }
+        },
+
+        replaceCard: function(newCardModel) {
+            var newCardView;
+            
+            newCardView = new FlashcardView({
+                model: newCardModel
+            });
+
+            if (this.currentView) {
+                this.currentView.remove();
+            }
+            this.currentView = newCardView;
+            this.$el.append(newCardView.el);
+        }
+    });
+
+    FlashcardCollection = Backbone.Collection.extend({
+        model: FlashcardModel,
+		
+		comparator : function(modelA, modelB) {
+			var a,b;
+			if (modelA && modelB) {
+				a = modelA.get('character');
+				b = modelB.get('character');
+				if ( a < b ) {
+					return -1;
+				}
+				if ( a > b ) {
+					return 1;
+				}
+			}
+			return 0;
+		},
+		
+        getNextCard: function() {
+            var nextId;
+            nextId=Math.floor(Math.random()*this.length)
+            return this.at(nextId);
+        }
+    });
+
+    cardCollection = new FlashcardCollection();
+
+    addCards = function(letters, style) {
+        letters.split('').forEach( function (c) {
+            var cardModel = new FlashcardModel({
+                type: style,
+                character: c,
+                id: c
+            });
+
+            cardCollection.add(cardModel);
+        });
+    };
+
+    addCards('BCDFGHJKLMNPQRSTVWXYZ','consonent');
+    addCards('AEIOU','vowel');
+    addCards('0123456789','number');
+
+    pageView = new PageView({
+        el : 'article',
+        collection : cardCollection
+    });
+
+    pageView.render();
+
+})();
+</script> 
+</body>
+</html>

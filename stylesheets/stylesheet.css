@@ -1,0 +1,73 @@
+body {
+	font-family: Comic Sans, Comic Sans MS, cursive;
+	background-color: #F0F0F0;
+	margin: 0px;
+	padding: 0px;
+}
+
+section {
+	padding: 20px;
+	background-color: #FFEEDD;
+	width: 800px;
+	clear: both;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+article {
+	padding-top: 20px;
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+article > div {
+	display : inline-block;
+	vertical-align: top;
+}
+
+#scores {
+	font-size: 0.5em;
+	text-align: center;
+	margin-left: 5px;
+	margin-right: 5px;
+	width: 105px;
+	padding-top:20px;
+	padding-bottom: 20px;
+}
+
+#key {
+	width: 305px;
+	height: 305px;
+	margin-left: 5px;
+	margin-right: 5px;
+	text-align: center;
+	border-radius:25px;
+	border-style:solid;
+	border-width:60px;
+}
+
+.consonent {
+	text-transform: lowercase;
+	color: #FFFFFF;
+	background-color: #00FF00;
+	border-color: #00AA00 #00BB00 #007700 #006600;
+}
+
+.vowel {
+	text-transform: lowercase;
+	color: #FFFFFF;
+	background-color: #FF00FF;
+	border-color: #AA00AA #BB00BB #770077 #660066;
+}
+
+.number {
+	color: #FFFFFF;
+	background-color: #FF0000;
+	border-color: #AA0000 #BB0000 #770000 #660000;
+}
+
+#keydisplay {
+	font-size: 10em;
+	line-height: 305px;
+}

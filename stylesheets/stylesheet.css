@@ -11,7 +11,7 @@ section {
 }
 
 article {
-	width:435px;
+	width:665px;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -24,8 +24,6 @@ article > div {
 #scores {
 	font-size: 2em;
 	text-align: center;
-	margin-left: 5px;
-	margin-right: 5px;
 	width: 135px;
 	padding-top:20px;
 	padding-bottom: 20px;
@@ -48,14 +46,12 @@ article > div {
 }
 
 #key {
-	width: 305px;
-	height: 305px;
-	margin-left: 5px;
-	margin-right: 5px;
+	width: 465px;
+	height: 465px;
 	text-align: center;
 	border-radius:25px;
 	border-style:solid;
-	border-width:60px;
+	border-width:100px;
 }
 
 .consonant {
@@ -79,6 +75,6 @@ article > div {
 }
 
 #keydisplay {
-	font-size: 10em;
-	line-height: 305px;
+	font-size: 20em;
+	line-height: 465px;
 }

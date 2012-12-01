@@ -210,7 +210,7 @@
 
     AppRouter = Backbone.Router.extend({
         routes: {
-            'characters' : 'characters',
+            'letters' : 'letters',
             'numbers' : 'numbers',
             ''  : 'all'
         }
@@ -218,7 +218,7 @@
 
     app_router = new AppRouter();
 
-    app_router.on('route:characters',function() {
+    app_router.on('route:letters',function() {
         cardCollection.reset();
         addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
         addCards('AEIOU','vowel');
@@ -241,9 +241,9 @@
 
     pageView.render();
 
-    Backbone.history.start({pushState: true});
+    Backbone.history.start({pushState: true, root: 'bazapp/characters.html'});
 
-    app_router.navigate('bazapp/characters.html',{trigger: false});
+    app_router.navigate('',{trigger: false});
 })();
 </script> 
 </body>

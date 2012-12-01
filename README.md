@@ -19,7 +19,7 @@ For Numbers Only:
 http://bazwilliams.github.com/bazapp/characters.html#numbers
 
 For Letters Only:
-http://bazwilliams.github.com/bazapp/characters.html#characters
+http://bazwilliams.github.com/bazapp/characters.html#letters
 
 Notes:
 * [Fixed] I found my son was holding keys down for too long which fired multiple key events

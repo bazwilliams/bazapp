@@ -11,6 +11,7 @@ The first time I showed this to my son, he wanted to play "Letters and Press But
 The release version (gh-page branch) of the application can be viewed at:
 http://bazwilliams.github.com/bazapp/characters.html
 
-Todo:
+Notes:
 * [Fixed] I found my son was holding keys down for too long which fired multiple key events
 * [Fixed] I found my son occasionally got distracted and would start pressing keys randomly which skewed the scoring
+* For some reason, the first character is repeated after successful character

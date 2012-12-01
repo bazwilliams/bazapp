@@ -239,11 +239,9 @@
         pageView.displayNewCard();
     });
 
-    Backbone.history.start({pushState: true, root: 'characters.html'});
+    Backbone.history.start({root: 'characters.html'});
 
     pageView.render();
-
-    app_router.navigate();
 })();
 </script> 
 </body>

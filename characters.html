@@ -28,7 +28,7 @@
 
 <script>
 (function () {
-    var FlashcardModel, ScoresView, FlashcardView, PageView, FlashcardCollection, cardCollection, addCards;
+    var AppRouter, app_router, FlashcardModel, ScoresView, FlashcardView, PageView, FlashcardCollection, cardCollection, addCards;
 
     FlashcardModel = Backbone.Model.extend({
         defaults: {
@@ -109,8 +109,6 @@
             })
 
             this.$el.append(scoresView.el);
-
-            this.displayNewCard();
         },
 
         updateScore: function(characterPressed) {
@@ -205,17 +203,47 @@
         });
     };
 
-    addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
-    addCards('AEIOU','vowel');
-    addCards('0123456789','number');
-
     pageView = new PageView({
         el : 'article',
         collection : cardCollection
     });
 
+    AppRouter = Backbone.Router.extend({
+        routes: {
+            'characters' : 'characters',
+            'numbers' : 'numbers',
+            ''  : 'all'
+        }
+    });
+
+    app_router = new AppRouter();
+
+    app_router.on('route:characters',function() {
+        cardCollection.reset();
+        addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
+        addCards('AEIOU','vowel');
+        pageView.displayNewCard();
+    });
+
+    app_router.on('route:numbers', function() {
+        cardCollection.reset();
+        addCards('0123456789','number');
+        pageView.displayNewCard();
+    });
+
+    app_router.on('route:all', function() {
+        cardCollection.reset();
+        addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
+        addCards('AEIOU','vowel');
+        addCards('0123456789','number');
+        pageView.displayNewCard();
+    });
+
     pageView.render();
 
+    Backbone.history.start({pushState: true});
+
+    app_router.navigate('',{trigger: false});
 })();
 </script> 
 </body>

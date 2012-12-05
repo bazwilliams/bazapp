@@ -6,51 +6,54 @@ body {
 }
 
 section {
-	padding: 20px;
 	clear: both;
+	width: 100%;
 }
 
 article {
-	width: 100%;
-	display : inline-block;
+	width: 980px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 article > div {
+	display: inline-block;
+	vertical-align: top;
 }
 
 #scores {
-	font-size: 2em;
+	padding-top: 170px;
+	font-size: 30px;
+	color: #AAAAAA;
 	text-align: center;
-	width: 135px;
-	padding-top:20px;
-	padding-bottom: 20px;
-	border-radius:25px;
-	border-style:solid;
-	border-width:5px;
-	display: none;
+	width: 120px;
+	height: 560px;
+	margin: 30px;
+	background-repeat:no-repeat;
+	background-position: 0px 120px;
 }
 
 .attempt-0 {
-	border-color: black;
+	background:url(../images/rocket-full.png);
 }
 
 .attempt-1 {
-	border-color: yellow;
+	background:url(../images/rocket-medium.png);
 }
 
 .attempt-2 {
-	border-color: red;
+	background:url(../images/rocket-low.png);
 }
 
 #key {
-	margin-left: auto;
-	margin-right: auto;
 	width: 400px;
 	height: 400px;
 	text-align: center;
 	border-radius:25px;
 	border-style:solid;
 	border-width:80px;
+	margin:30px;
+	margin-right:210px;
 }
 
 .consonant {

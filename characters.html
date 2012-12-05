@@ -28,7 +28,7 @@
 
 <script>
 (function () {
-    var AppRouter, app_router, FlashcardModel, ScoresView, FlashcardView, PageView, FlashcardCollection, cardCollection, addCards;
+    var AppRouter, appRouter, FlashcardModel, ScoresView, FlashcardView, PageView, pageView, FlashcardCollection, cardCollection;
 
     FlashcardModel = Backbone.Model.extend({
         defaults: {
@@ -166,42 +166,42 @@
             return score;
         },
 
-		comparator : function(modelA, modelB) {
-			var a,b;
-			if (modelA && modelB) {
-			    a = modelA.getScore();
-			    b = modelB.getScore();
-				if ( a < b ) {
-					return -1;
-				}
-				if ( a > b ) {
-					return 1;
-				}
-			}
-			return 0;
-		},
-		
+        comparator : function(modelA, modelB) {
+            var a,b;
+            if (modelA && modelB) {
+                a = modelA.getScore();
+                b = modelB.getScore();
+                if ( a < b ) {
+                    return -1;
+                }
+                if ( a > b ) {
+                    return 1;
+                }
+            }
+            return 0;
+        },
+
         getNextCard: function() {
             var nextId;
             nextId=Math.floor(Math.pow(Math.random(),1.5)*this.length)
             this.attempt = 0;
             return this.at(nextId);
+        },
+
+        addCards: function(letters, style) {
+            var self = this;
+            letters.split('').forEach( function (c) {
+                var model = new FlashcardModel({
+                    type: style,
+                    character: c,
+                    id: c
+                });
+                self.add(model);
+            });
         }
     });
 
     cardCollection = new FlashcardCollection();
-
-    addCards = function(letters, style) {
-        letters.split('').forEach( function (c) {
-            var cardModel = new FlashcardModel({
-                type: style,
-                character: c,
-                id: c
-            });
-
-            cardCollection.add(cardModel);
-        });
-    };
 
     pageView = new PageView({
         el : 'article',
@@ -216,26 +216,27 @@
         }
     });
 
-    app_router = new AppRouter();
+    appRouter = new AppRouter();
 
-    app_router.on('route:letters',function() {
+    appRouter.on('route:letters',function() {
         cardCollection.reset();
-        addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
+        cardCollection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
+        cardCollection.addCards('AEIOU','vowel');
         addCards('AEIOU','vowel');
         pageView.displayNewCard();
     });
 
-    app_router.on('route:numbers', function() {
+    appRouter.on('route:numbers', function() {
         cardCollection.reset();
-        addCards('0123456789','number');
+        cardCollection.addCards('0123456789','number');
         pageView.displayNewCard();
     });
 
-    app_router.on('route:all', function() {
+    appRouter.on('route:all', function() {
         cardCollection.reset();
-        addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
-        addCards('AEIOU','vowel');
-        addCards('0123456789','number');
+        cardCollection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
+        cardCollection.addCards('AEIOU','vowel');
+        cardCollection.addCards('0123456789','number');
         pageView.displayNewCard();
     });
 

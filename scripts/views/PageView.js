@@ -1,4 +1,4 @@
-require([
+define([
     'jquery',
     'backbone',
     'views/ScoresView',
@@ -33,7 +33,7 @@ require([
             });
 
             scoresView = new ScoresView({
-                collection : cardCollection
+                collection : this.collection
             })
 
             this.$el.append(scoresView.el);

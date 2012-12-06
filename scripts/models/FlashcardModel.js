@@ -1,5 +1,5 @@
-require([
-  'backbone',
+define([
+  'backbone'
 ], function(Backbone){
     var FlashcardModel = Backbone.Model.extend({
         defaults: {

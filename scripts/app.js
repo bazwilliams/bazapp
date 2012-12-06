@@ -11,10 +11,10 @@ define([
 
     cardCollection = new FlashcardCollection();
 
-    // pageView = new PageView({
-    //     el : 'article',
-    //     collection : cardCollection
-    // });
+    pageView = new PageView({
+        el : 'article',
+        collection : cardCollection
+    });
 
     appRouter = new Router();
 
@@ -42,7 +42,7 @@ define([
 
     Backbone.history.start({root: 'characters.html'});
 
-    // pageView.render();
+    pageView.render();
   }
 
   return {

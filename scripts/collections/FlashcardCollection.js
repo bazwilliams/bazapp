@@ -8,6 +8,20 @@ define([
 
         attempt : 0,
 
+        increaseAttempt : function(announce) {
+            this.attempt += 1;
+            if (announce) {
+                this.trigger('attempt');
+            }
+        },
+
+        resetAttempt : function(announce) {
+            this.attempt = 0;
+            if (announce) {
+                this.trigger('attempt');
+            }
+        },
+
         getScore : function() {
             var score = 0;
             this.each(function(model) {
@@ -33,8 +47,7 @@ define([
 
         getNextCard: function() {
             var nextId;
-            nextId=Math.floor(Math.pow(Math.random(),1.5)*this.length)
-            this.attempt = 0;
+            nextId=Math.floor(Math.pow(Math.random(),1.5)*this.length);
             return this.at(nextId);
         },
 

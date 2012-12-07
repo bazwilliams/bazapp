@@ -22,7 +22,9 @@ article > div {
 }
 
 #scores {
-	padding-top: 170px;
+	position: relative;
+	top: 260px;
+	padding-top: 50px;
 	font-size: 30px;
 	color: #AAAAAA;
 	text-align: center;
@@ -30,19 +32,7 @@ article > div {
 	height: 560px;
 	margin: 30px;
 	background-repeat:no-repeat;
-	background-position: 0px 120px;
-}
-
-.attempt-0 {
-	background:url(../images/rocket-full.png);
-}
-
-.attempt-1 {
-	background:url(../images/rocket-medium.png);
-}
-
-.attempt-2 {
-	background:url(../images/rocket-low.png);
+	background-image:url(../images/rocket-full.png);
 }
 
 #key {

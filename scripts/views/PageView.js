@@ -19,8 +19,7 @@ define([
                     code = (e.keyCode ? e.keyCode : e.which);
                     character = String.fromCharCode(code);
                     if (self.collection.get(character)) {
-                        self.collection.attempt++;
-                        if (self.updateScore(character)) {
+                        if (self.handleCharacter(character)) {
                             self.displayNewCard();
                         }
                         scoresView.render();
@@ -39,12 +38,19 @@ define([
             this.$el.append(scoresView.el);
         },
 
-        updateScore: function(characterPressed) {
+        announceAttempt: true,
+
+        handleCharacter: function(characterPressed) {
             var success, failure;
+
+            this.collection.increaseAttempt(this.announceAttempt);
             if (characterPressed === this.currentView.model.get('character')) {
                 success = this.currentView.model.get('success')+1;
                 this.currentView.model.set('success',success);
                 this.collection.sort();
+                this.collection.trigger('success');
+                this.announceAttempt = true;
+                this.collection.resetAttempt(this.announceAttempt);
                 return true;
             }
             else {
@@ -53,6 +59,9 @@ define([
                     this.currentView.model.set('failure',failure);
                     this.collection.sort();
                 } else if (this.collection.attempt > 2) {
+                    //after 3 attempts, change the card anyway - but don't announce any more attempts
+                    this.announceAttempt = false;
+                    this.collection.resetAttempt(this.announceAttempt);
                     return true;
                 }
                 return false;

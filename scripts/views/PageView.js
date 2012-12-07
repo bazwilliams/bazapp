@@ -1,12 +1,12 @@
 define([
     'jquery',
     'backbone',
-    'views/ScoresView',
+    'views/RocketView',
     'views/FlashcardView'
-], function($, Backbone, ScoresView, FlashcardView){
+], function($, Backbone, RocketView, FlashcardView){
     var PageView = Backbone.View.extend({
         initialize: function () {
-            var self, scoresView, keyReleased;
+            var self, rocketView, keyReleased;
 
             keyReleased = true;
 
@@ -22,7 +22,6 @@ define([
                         if (self.handleCharacter(character)) {
                             self.displayNewCard();
                         }
-                        scoresView.render();
                     }
                 }
             });
@@ -31,11 +30,11 @@ define([
                 keyReleased = true;
             });
 
-            scoresView = new ScoresView({
+            rocketView = new RocketView({
                 collection : this.collection
             })
 
-            this.$el.append(scoresView.el);
+            this.$el.append(rocketView.el);
         },
 
         announceAttempt: true,
@@ -85,7 +84,10 @@ define([
             if (this.currentView) {
                 this.currentView.remove();
             }
+
             this.currentView = newCardView;
+
+            newCardView.render();
             this.$el.append(newCardView.el);
         }
     });

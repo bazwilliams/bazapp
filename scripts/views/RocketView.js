@@ -2,10 +2,10 @@ define([
     'jquery',
     'backbone',
     'handlebars',
-    'text!templates/scores-template.html'
-], function($, Backbone, Handlebars, ScoresTemplate){
-    var ScoresView = Backbone.View.extend({
-        template: Handlebars.compile(ScoresTemplate),
+    'text!templates/rocket-template.html'
+], function($, Backbone, Handlebars, RocketTemplate){
+    var RocketView = Backbone.View.extend({
+        template: Handlebars.compile(RocketTemplate),
 
         initialize: function() {
             this.collection.bind('change', this.updateScore, this);
@@ -32,7 +32,7 @@ define([
             }, {
                 duration: 50
             });
-            $('#scores').css('background-image',this.images[this.collection.attempt]);
+            $('#rocket').css('background-image',this.images[this.collection.attempt]);
         },
 
         updateScore: function() {
@@ -49,5 +49,5 @@ define([
         }
     })
 
-    return ScoresView;
+    return RocketView;
 });

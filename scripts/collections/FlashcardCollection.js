@@ -6,7 +6,9 @@ define([
     var FlashcardCollection = Backbone.Collection.extend({
         model: FlashcardModel,
 
-        attempt : 0,
+        initialize : function() {
+            this.attempt = 0;
+        },
 
         increaseAttempt : function(announce) {
             this.attempt += 1;
@@ -31,6 +33,7 @@ define([
         },
 
         comparator : function(modelA, modelB) {
+            console.log("running");
             var a,b;
             if (modelA && modelB) {
                 a = modelA.getScore();

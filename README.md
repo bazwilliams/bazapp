@@ -20,8 +20,3 @@ http://bazwilliams.github.com/bazapp/characters.html#numbers
 
 For Letters Only:
 http://bazwilliams.github.com/bazapp/characters.html#letters
-
-Notes:
-* [Fixed] I found my son was holding keys down for too long which fired multiple key events
-* [Fixed] I found my son occasionally got distracted and would start pressing keys randomly which skewed the scoring
-* [Fixed] For some reason, the first character is repeated after successful character

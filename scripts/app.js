@@ -22,7 +22,6 @@ define([
         cardCollection.reset();
         cardCollection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
         cardCollection.addCards('AEIOU','vowel');
-        addCards('AEIOU','vowel');
         pageView.displayNewCard();
     });
 

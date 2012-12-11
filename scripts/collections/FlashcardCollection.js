@@ -33,7 +33,6 @@ define([
         },
 
         comparator : function(modelA, modelB) {
-            console.log("running");
             var a,b;
             if (modelA && modelB) {
                 a = modelA.getScore();

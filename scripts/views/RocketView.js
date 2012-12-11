@@ -15,7 +15,7 @@ define([
         },
 
         moveUp: function () {
-            $('#scores').animate({
+            $('#rocket').animate({
                 top: '-=20'
             }, {
                 duration: 100
@@ -27,7 +27,7 @@ define([
                   'url(images/rocket-low.png)' ],
 
         changeFlame: function () {
-            $('#scores').animate({
+            $('#rocket').animate({
                 'background-image': this.images[this.collection.attempt]
             }, {
                 duration: 50

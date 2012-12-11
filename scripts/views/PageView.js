@@ -84,10 +84,7 @@ define([
             if (this.currentView) {
                 this.currentView.remove();
             }
-
             this.currentView = newCardView;
-
-            newCardView.render();
             this.$el.append(newCardView.el);
         }
     });

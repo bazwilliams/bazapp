@@ -24,7 +24,7 @@ define([
             var height;
 
             $('#rocket').animate({
-                top: '-=80'
+                top: '-=20'
             }, {
                 duration: 100
             });

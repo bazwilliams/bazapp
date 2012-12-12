@@ -2,16 +2,20 @@ define([
     'jquery',
     'backbone',
     'views/RocketView',
-    'views/FlashcardView'
-], function($, Backbone, RocketView, FlashcardView){
+    'views/FlashcardView',
+    'views/ScoresView'
+], function($, Backbone, RocketView, FlashcardView, ScoresView){
     var PageView = Backbone.View.extend({
+
         initialize: function () {
-            var self, rocketView, keyReleased;
+            var self, keyReleased;
+
+            this.collection.bind('complete', this.handleComplete, this);
 
             keyReleased = true;
 
             self = this;
-            $(document).keydown('keydown.flashcard', function (e) {
+            $(document).bind('keydown.flashcard', function (e) {
                 var code, character;
                 e.preventDefault();
                 if (keyReleased) {
@@ -26,26 +30,44 @@ define([
                 }
             });
 
-            $(document).keyup('keyup.flashcard', function (e) {
+            $(document).bind('keyup.flashcard', function (e) {
                 keyReleased = true;
             });
 
-            rocketView = new RocketView({
+            this.rocketView = new RocketView({
                 collection : this.collection
-            })
+            });
 
-            this.$el.append(rocketView.el);
+            this.$el.append(this.rocketView.el);
         },
 
         announceAttempt: true,
+        
+        gameComplete: false,
+
+        handleComplete: function() {
+            var scoresView;
+
+            this.gameComplete = true;
+            this.rocketView.close();
+            this.currentFlashCard.close();
+            $(document).unbind('keydown.flashcard');
+            $(document).unbind('keyup.flashcard');
+
+            scoresView = new ScoresView({
+                collection : this.collection
+            });
+
+            this.$el.append(scoresView.el);
+        },
 
         handleCharacter: function(characterPressed) {
             var success, failure;
 
             this.collection.increaseAttempt(this.announceAttempt);
-            if (characterPressed === this.currentView.model.get('character')) {
-                success = this.currentView.model.get('success')+1;
-                this.currentView.model.set('success',success);
+            if (characterPressed === this.currentFlashCard.model.get('character')) {
+                success = this.currentFlashCard.model.get('success')+1;
+                this.currentFlashCard.model.set('success',success);
                 this.collection.sort();
                 this.collection.trigger('success');
                 this.announceAttempt = true;
@@ -54,8 +76,8 @@ define([
             }
             else {
                 if (this.collection.attempt === 1) {
-                    failure = this.currentView.model.get('failure')+1;
-                    this.currentView.model.set('failure',failure);
+                    failure = this.currentFlashCard.model.get('failure')+1;
+                    this.currentFlashCard.model.set('failure',failure);
                     this.collection.sort();
                 } else if (this.collection.attempt > 2) {
                     //after 3 attempts, change the card anyway - but don't announce any more attempts
@@ -68,9 +90,11 @@ define([
         },
 
         displayNewCard: function() {
-            var newCardModel = this.collection.getNextCard();
-            if (newCardModel) {
-                this.replaceCard(newCardModel);
+            if (!this.gameComplete) {
+                var newCardModel = this.collection.getNextCard();
+                if (newCardModel) {
+                    this.replaceCard(newCardModel);
+                }
             }
         },
 
@@ -81,11 +105,12 @@ define([
                 model: newCardModel
             });
 
-            if (this.currentView) {
-                this.currentView.remove();
+            if (this.currentFlashCard) {
+                this.currentFlashCard.close();
             }
-            this.currentView = newCardView;
             this.$el.append(newCardView.el);
+
+            this.currentFlashCard = newCardView;
         }
     });
 

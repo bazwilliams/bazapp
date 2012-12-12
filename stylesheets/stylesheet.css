@@ -21,6 +21,14 @@ article > div {
 	vertical-align: top;
 }
 
+#gamecomplete {
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
+	height: 600px;
+	background-image:url(../images/moon.png);
+}
+
 #rocket {
 	position: relative;
 	top: 260px;

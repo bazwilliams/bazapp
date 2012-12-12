@@ -1,0 +1,13 @@
+<div id="gamecomplete">
+	<h1>Well Done!</h1>
+	<h2>Your Score: <span id="totalscore"></span></h2>
+	<div id="scores">
+		{{#each this}}
+		<div class="score">
+			<span class="character">{{character}}</span>
+			<span class="hits">{{success}}</span>
+			<span class="misses">{{failure}}</span>
+		</div>
+		{{/each}}
+	</div>
+</div>

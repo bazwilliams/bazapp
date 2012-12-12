@@ -14,12 +14,23 @@ define([
             this.render();
         },
 
+        onClose: function () {
+            this.collection.unbind('change', this.updateScore);
+            this.collection.unbind('attempt', this.changeFlame);
+            this.collection.unbind('success', this.moveUp);
+        },
+
         moveUp: function () {
+            var height;
+
             $('#rocket').animate({
-                top: '-=20'
+                top: '-=80'
             }, {
                 duration: 100
             });
+
+            height = parseInt($('#rocket').css('top'),10);
+            if (height <= 0) this.collection.trigger('complete');
         },
 
         images: [ 'url(images/rocket-full.png)', 

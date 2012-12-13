@@ -10,7 +10,10 @@ define([
         },
 
         getScore: function() {
-            return this.get('success') - this.get('failure');
+            var score;
+            score = this.get('success') - this.get('failure');
+            this.set('score',score);
+            return this.get('score');
         }
     });
     

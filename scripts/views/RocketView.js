@@ -24,7 +24,7 @@ define([
             var height;
 
             $('#rocket').animate({
-                top: '-=20'
+                top: '-=10'
             }, {
                 duration: 100
             });
@@ -39,7 +39,7 @@ define([
 
         changeFlame: function () {
             $('#rocket').animate({
-                'background-image': this.images[this.collection.attempt]
+                'backgroundImage': this.images[this.collection.attempt]
             }, {
                 duration: 50
             });

@@ -5,7 +5,8 @@ define([
   'Router',
   'collections/FlashcardCollection',
   'views/PageView',
-  'Extensions'
+  'Extensions',
+  'Helpers'
 ], function( $, Backbone, Router, FlashcardCollection, PageView){
   var initialize = function(){
     var cardCollection, pageView, appRouter;

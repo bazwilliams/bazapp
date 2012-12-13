@@ -3,11 +3,12 @@
 	<h2>Your Score: <span id="totalscore"></span></h2>
 	<div id="scores">
 		{{#each this}}
+		{{#if score}}
 		<div class="score">
-			<span class="character">{{character}}</span>
-			<span class="hits">{{success}}</span>
-			<span class="misses">{{failure}}</span>
+			<div class="{{type}} character">{{character}}</div>
+			<div class="value">{{score}}</div>
 		</div>
+		{{/if}}
 		{{/each}}
 	</div>
 </div>

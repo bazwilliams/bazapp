@@ -55,10 +55,9 @@ define([
             $(document).unbind('keyup.flashcard');
 
             scoresView = new ScoresView({
+                el : this.$el,
                 collection : this.collection
             });
-
-            this.$el.append(scoresView.el);
         },
 
         handleCharacter: function(characterPressed) {

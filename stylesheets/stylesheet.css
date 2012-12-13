@@ -5,6 +5,16 @@ body {
 	padding: 0px;
 }
 
+h1 {
+	text-align: center;
+	text-transform: uppercase;
+	font-size: 2em;
+}
+
+h2 {
+	text-align: center;
+}
+
 section {
 	clear: both;
 	width: 100%;
@@ -21,12 +31,49 @@ article > div {
 	vertical-align: top;
 }
 
+#scores {
+	text-align: center;
+	background: rgba(255, 255, 255, 0.5);
+	border-radius: 20px;
+	padding: 10px;
+}
+
+.score {
+	display: inline-block;
+	margin: 10px;
+}
+
+.score > .character {
+	line-height: 18px;
+}
+
+.score > .number {
+	line-height: 20px;
+}
+
+.character {
+	display: inline-block;
+	width: 21px;
+	height: 21px;
+	text-align: center;
+	border-radius:4px;
+	border-style:solid;
+	border-width:6px;
+}
+
+.value {
+	display: inline-block;
+}
+
 #gamecomplete {
-	margin-left: auto;
-	margin-right: auto;
-	width: 600px;
+	padding-top:50px;
+	padding-right: 150px;
+	padding-left: 150px;
+	width: 680px;
 	height: 600px;
-	background-image:url(../images/moon.png);
+	background-image: url(../images/moon.png);
+	background-position-x: 190px;
+	background-repeat: no-repeat;
 }
 
 #rocket {

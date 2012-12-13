@@ -10,7 +10,7 @@ The first time I showed this to my son, he wanted to play "Letters and Press But
 
 The application supports showing just characters, numbers, or both depending on the URL. 
 
-The release version (gh-page branch) of the application can be viewed at:
+The release version (gh-pages branch) of the application can be viewed at:
 
 For All Characters:
 http://bazwilliams.github.com/bazapp/characters.html

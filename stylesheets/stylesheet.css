@@ -66,6 +66,7 @@ article > div {
 }
 
 #gamecomplete {
+	margin-top: 20px;
 	padding-top:50px;
 	padding-right: 150px;
 	padding-left: 150px;

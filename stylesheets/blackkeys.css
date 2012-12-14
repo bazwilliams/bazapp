@@ -1,0 +1,12 @@
+.score > .character {
+	line-height: 20px;
+}
+
+.consonant, .vowel, .number {
+	font-family: 'Didact Gothic', sans-serif;
+	line-height:390px;
+	text-transform: uppercase;
+	color: #FFFFFF;
+	background-color: #333333;
+	border-color: #666666 #777777 #111111 #222222;
+}

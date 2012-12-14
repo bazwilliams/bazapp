@@ -43,14 +43,6 @@ article > div {
 	margin: 10px;
 }
 
-.score > .character {
-	line-height: 18px;
-}
-
-.score > .number {
-	line-height: 20px;
-}
-
 .character {
 	display: inline-block;
 	width: 21px;
@@ -100,29 +92,6 @@ article > div {
 	border-width:80px;
 	margin:30px;
 	margin-right:210px;
-}
-
-.consonant {
-	line-height:320px;
-	text-transform: lowercase;
-	color: #FFFFFF;
-	background-color: #00AA00;
-	border-color: #008800 #009900 #005500 #004400;
-}
-
-.vowel {
-	line-height:320px;
-	text-transform: lowercase;
-	color: #FFFFFF;
-	background-color: #FF00FF;
-	border-color: #AA00AA #BB00BB #770077 #660066;
-}
-
-.number {
-	line-height:400px;
-	color: #FFFFFF;
-	background-color: #FF0000;
-	border-color: #AA0000 #BB0000 #770000 #660000;
 }
 
 #keydisplay {

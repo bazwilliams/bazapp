@@ -1,0 +1,33 @@
+.score > .character {
+	line-height: 18px;
+}
+
+.score > .number {
+	line-height: 20px;
+}
+
+.consonant {
+	font-family: Comic Sans, Comic Sans MS, cursive;
+	line-height:320px;
+	text-transform: lowercase;
+	color: #FFFFFF;
+	background-color: #00AA00;
+	border-color: #008800 #009900 #005500 #004400;
+}
+
+.vowel {
+	font-family: Comic Sans, Comic Sans MS, cursive;
+	line-height:320px;
+	text-transform: lowercase;
+	color: #FFFFFF;
+	background-color: #FF00FF;
+	border-color: #AA00AA #BB00BB #770077 #660066;
+}
+
+.number {
+	font-family: Comic Sans, Comic Sans MS, cursive;
+	line-height:400px;
+	color: #FFFFFF;
+	background-color: #FF0000;
+	border-color: #AA0000 #BB0000 #770000 #660000;
+}

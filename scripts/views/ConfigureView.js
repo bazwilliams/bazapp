@@ -35,6 +35,7 @@ define([
         render: function () {
             var templateResult = this.template();
             this.$el.append(templateResult);
+            this.$el.find('#keyboardselector').val($('#keyboardstylesheet').attr('href'));
             return this;
         }
     });

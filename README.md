@@ -12,3 +12,11 @@ The application supports showing just characters, numbers, or both and it suppor
 
 The release version (gh-pages branch) of the application can be viewed at:
 http://bazwilliams.github.com/bazapp/characters.html
+
+Moon image downloaded from here: 
+http://www.clker.com/clipart-25032.html
+
+Rocket images:
+http://www.clker.com/clipart-rocket-lowflame.html
+http://www.clker.com/clipart-rocket-mediumflame.html
+http://www.clker.com/clipart-rocket-bigflame.html

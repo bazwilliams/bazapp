@@ -1,7 +1,9 @@
+#keyboardchoice > .character,
 .score > .character {
 	line-height: 18px;
 }
 
+#keyboardchoice > .number,
 .score > .number {
 	line-height: 20px;
 }

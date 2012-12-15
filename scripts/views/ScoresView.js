@@ -8,8 +8,16 @@ define([
     var ScoresView = Backbone.View.extend({
         template: Handlebars.compile(ScoresTemplate),
 
+        events: {
+            'click #startgame' : 'startGame'
+        },
+
         initialize: function () {
             this.render();
+        },
+
+        startGame: function() {
+            this.options.router.navigate('', {trigger: true});
         },
 
         render: function () {
@@ -17,7 +25,7 @@ define([
             $(this.el).append(templateResult);
             $(this.el).find('#totalscore').text(this.collection.getScore());
             
-            $('body').animate({
+            $('article').animate({
                 'backgroundColor': '#111111'
             }, {
                 duration: 500

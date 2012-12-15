@@ -5,7 +5,8 @@ define([
         routes: {
             'letters' : 'letters',
             'numbers' : 'numbers',
-            ''  : 'all'
+            'all'  : 'all',
+            '' : 'configure'
         }
     });
 

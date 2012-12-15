@@ -5,45 +5,68 @@ define([
   'Router',
   'collections/FlashcardCollection',
   'views/PageView',
+  'views/ConfigureView',
   'Extensions',
   'Helpers'
-], function( $, Backbone, Router, FlashcardCollection, PageView){
+], function( $, Backbone, Router, FlashcardCollection, PageView, ConfigureView){
   var initialize = function(){
-    var cardCollection, pageView, appRouter;
-
-    cardCollection = new FlashcardCollection();
-
-    pageView = new PageView({
-        el : 'article',
-        collection : cardCollection
-    });
+    var initGame, currentView, switchView, appRouter, configureTemplate;
 
     appRouter = new Router();
 
-    appRouter.on('route:letters',function() {
-        cardCollection.reset();
-        cardCollection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
-        cardCollection.addCards('AEIOU','vowel');
+    switchView = function(newView) {
+        if (currentView) currentView.close();
+        currentView = newView;
+        $(document).find('section').append(currentView.el);
+    }
+
+    initGame = function() {
+      cardCollection = new FlashcardCollection();
+
+      pageView = new PageView({
+         tagName : 'article',
+         collection : cardCollection,
+         router: appRouter
+      });
+
+      pageView.render();
+
+      return pageView;
+    };
+
+    appRouter.on('route:configure', function() {
+        configureView = new ConfigureView({
+          tagName : 'article',
+          router : appRouter
+        });
+        switchView(configureView);
+    });
+
+    appRouter.on('route:letters', function() {
+        pageView = initGame();
+        pageView.collection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
+        pageView.collection.addCards('AEIOU','vowel');
         pageView.displayNewCard();
+        switchView(pageView);
     });
 
     appRouter.on('route:numbers', function() {
-        cardCollection.reset();
-        cardCollection.addCards('0123456789','number');
+        pageView = initGame();
+        pageView.collection.addCards('0123456789','number');
         pageView.displayNewCard();
+        switchView(pageView);
     });
 
     appRouter.on('route:all', function() {
-        cardCollection.reset();
-        cardCollection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
-        cardCollection.addCards('AEIOU','vowel');
-        cardCollection.addCards('0123456789','number');
+        pageView = initGame();
+        pageView.collection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
+        pageView.collection.addCards('AEIOU','vowel');
+        pageView.collection.addCards('0123456789','number');
         pageView.displayNewCard();
+        switchView(pageView);
     });
 
     Backbone.history.start({root: 'characters.html'});
-
-    pageView.render();
   }
 
   return {

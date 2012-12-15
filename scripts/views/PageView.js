@@ -56,7 +56,8 @@ define([
 
             scoresView = new ScoresView({
                 el : this.$el,
-                collection : this.collection
+                collection : this.collection,
+                router: this.options.router
             });
         },
 

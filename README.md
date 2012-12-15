@@ -8,15 +8,7 @@ After purchasing a Duragadget children's keyboard I wanted a training applicatio
 
 The first time I showed this to my son, he wanted to play "Letters and Press Button" instead of watching TV. 
 
-The application supports showing just characters, numbers, or both depending on the URL. 
+The application supports showing just characters, numbers, or both and it supports 2 keyboard themes (Duragadget and Black keys). 
 
 The release version (gh-pages branch) of the application can be viewed at:
-
-For All Characters:
 http://bazwilliams.github.com/bazapp/characters.html
-
-For Numbers Only:
-http://bazwilliams.github.com/bazapp/characters.html#numbers
-
-For Letters Only:
-http://bazwilliams.github.com/bazapp/characters.html#letters

@@ -35,7 +35,8 @@ define([
             });
 
             this.rocketView = new RocketView({
-                collection : this.collection
+                collection : this.collection,
+                gameSpeed : this.options.gameSpeed
             });
 
             this.$el.append(this.rocketView.el);

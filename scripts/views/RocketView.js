@@ -10,6 +10,7 @@ define([
         rocketSpeed: 10,
         
         initialize: function() {
+            this.rocketSpeed = 260 / this.options.gameSpeed;
             this.collection.bind('change', this.updateScore, this);
             this.collection.bind('attempt', this.changeFlame, this);
             this.collection.bind('success', this.moveUp, this);

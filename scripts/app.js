@@ -20,13 +20,14 @@ define([
         $(document).find('section').append(currentView.el);
     }
 
-    initGame = function() {
+    initGame = function(gameSpeed) {
       cardCollection = new FlashcardCollection();
 
       pageView = new PageView({
          tagName : 'article',
          collection : cardCollection,
-         router: appRouter
+         router: appRouter,
+         gameSpeed: gameSpeed
       });
 
       pageView.render();
@@ -42,23 +43,23 @@ define([
         switchView(configureView);
     });
 
-    appRouter.on('route:letters', function() {
-        pageView = initGame();
+    appRouter.on('route:letters', function(gameSpeed) {
+        pageView = initGame(gameSpeed);
         pageView.collection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
         pageView.collection.addCards('AEIOU','vowel');
         pageView.displayNewCard();
         switchView(pageView);
     });
 
-    appRouter.on('route:numbers', function() {
-        pageView = initGame();
+    appRouter.on('route:numbers', function(gameSpeed) {
+        pageView = initGame(gameSpeed);
         pageView.collection.addCards('0123456789','number');
         pageView.displayNewCard();
         switchView(pageView);
     });
 
-    appRouter.on('route:all', function() {
-        pageView = initGame();
+    appRouter.on('route:all', function(gameSpeed) {
+        pageView = initGame(gameSpeed);
         pageView.collection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
         pageView.collection.addCards('AEIOU','vowel');
         pageView.collection.addCards('0123456789','number');

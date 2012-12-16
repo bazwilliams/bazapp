@@ -1,12 +1,15 @@
 define([
     'jquery',
+    'jquery-ui',
     'backbone',
     'handlebars',
     'text!templates/configure-template.html'
-], function($, Backbone, Handlebars, ConfigureTemplate){
+], function($, jqueryui, Backbone, Handlebars, ConfigureTemplate){
     var ConfigureView = Backbone.View.extend({
 
         characterSet: 'all',
+
+        gameLength: 20,
 
         template: Handlebars.compile(ConfigureTemplate),
 
@@ -25,17 +28,33 @@ define([
         },
 
         startGame: function() {
-            this.options.router.navigate(this.characterSet, {trigger: true});
+            this.options.router.navigate(this.characterSet + '/' + this.gameLength, {trigger: true});
         },
 
         initialize: function () {
             this.render();
         },
 
+        updateGameLength: function () {
+            this.gameLength = this.$el.find('#gamelengthslider').slider("value");
+        },
+
         render: function () {
-            var templateResult = this.template();
+            var templateResult, self;
+            templateResult = this.template();
             this.$el.append(templateResult);
             this.$el.find('#keyboardselector').val($('#keyboardstylesheet').attr('href'));
+            self = this;
+            this.$el.find('#gamelengthslider').slider({
+                value: this.gameLength,
+                min: 1,
+                max: 100,
+                step: 1,
+                slide: function( event, ui ) {
+                    self.updateGameLength();
+                }
+            });
+            this.updateGameLength();
             return this;
         }
     });

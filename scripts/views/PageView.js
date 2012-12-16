@@ -45,6 +45,16 @@ define([
         
         gameComplete: false,
 
+        //Todo: Move ScoresView into App as a route and refactor unbinding and closing of composite views
+        
+        onClose : function() {
+            if (this.rocketView) this.rocketView.close();
+            if (this.currentFlashCard) this.currentFlashCard.close();
+            $(document).unbind('keydown.flashcard');
+            $(document).unbind('keyup.flashcard');
+            if (this.scoresView) this.scoresView.close();
+        },
+
         handleComplete: function() {
             var scoresView;
 
@@ -54,7 +64,7 @@ define([
             $(document).unbind('keydown.flashcard');
             $(document).unbind('keyup.flashcard');
 
-            scoresView = new ScoresView({
+            this.scoresView = new ScoresView({
                 el : this.$el,
                 collection : this.collection,
                 router: this.options.router

@@ -7,6 +7,8 @@ define([
     var RocketView = Backbone.View.extend({
         template: Handlebars.compile(RocketTemplate),
 
+        rocketSpeed: 10,
+        
         initialize: function() {
             this.collection.bind('change', this.updateScore, this);
             this.collection.bind('attempt', this.changeFlame, this);
@@ -24,7 +26,7 @@ define([
             var height;
 
             $('#rocket').animate({
-                top: '-=10'
+                top: '-='+this.rocketSpeed
             }, {
                 duration: 100
             });

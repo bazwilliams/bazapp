@@ -37,6 +37,7 @@ define([
 
         updateGameLength: function () {
             this.gameLength = this.$el.find('#gamelengthslider').slider("value");
+            this.$el.find('#gamelength').text(this.gameLength);
         },
 
         render: function () {

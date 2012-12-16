@@ -98,6 +98,7 @@ article > div {
 }
 
 #gamelengthslider {
+	top: 2px;
 	width: 200px;
 	display: inline-block;
 }

@@ -2,7 +2,7 @@
 	<h1>Letters and Numbers</h1>
 	<p>This is a game to familiarise people with a keyboard, it is aimed at children and supports the 26 letters of the english alphabet and numbers 0 to 9. The application will display a keyboard key and the player must press the correct key to allow the rocket ship to travel up the page. A score is shown when the ship reaches the top. The engine attempts to favour those characters that have been incorrectly guessed; all played keys are shown in a score page once the rocket has reached the top of the page.</p>
 	<p>The game is hosted on github (<a href="https://github.com/bazwilliams/bazapp">https://github.com/bazwilliams/bazapp)</a></p>
-	<p>Configure your game below, the duragadget theme is styled similar to <a href="http://duragadget.com/products/large-coloured-child-proof-usb-computerlaptoppc-keyboard--w-big-keys-for-kids.html">Duragadget's child proof keyboard</a>, the black keys are themed based on a macbook keyboard.  
+	<p>Configure your game below, the duragadget theme is styled similar to <a href="http://duragadget.com/products/large-coloured-child-proof-usb-computerlaptoppc-keyboard--w-big-keys-for-kids.html">Duragadget's child proof keyboard</a>, the black keys are themed based on a macbook keyboard.  The game length slider adjusts how many steps the rocket must take to complete the game.</p>
 	<form>
 		<label class="control">Select Your Keyboard Style
 		<select id="keyboardselector" name="keyboardtype">
@@ -34,6 +34,7 @@
 		<div class="control" id="gamelengthslidercontrol">
 			<label>Length of Game
 				<div id="gamelengthslider"/>
+				<span id="gamelength"/>
 			</label>
 		</div>
 

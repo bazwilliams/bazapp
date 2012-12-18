@@ -7,10 +7,6 @@ define([
 ], function($, jqueryui, Backbone, Handlebars, ConfigureTemplate){
     var ConfigureView = Backbone.View.extend({
 
-        characterSet: 'all',
-
-        gameLength: 20,
-
         template: Handlebars.compile(ConfigureTemplate),
 
         events: {
@@ -24,11 +20,11 @@ define([
         },
 
         setCharacterSet: function() {
-            this.characterSet = this.$el.find('#characterselector').val();
+            this.model.set('characterSet', this.$el.find('#characterselector').val());
         },
 
         startGame: function() {
-            this.options.router.navigate(this.characterSet + '/' + this.gameLength, {trigger: true});
+            this.options.router.navigate(this.model.get('characterSet') + '/' + this.model.get('gameLength'), {trigger: true});
         },
 
         initialize: function () {
@@ -36,18 +32,19 @@ define([
         },
 
         updateGameLength: function () {
-            this.gameLength = this.$el.find('#gamelengthslider').slider("value");
-            this.$el.find('#gamelength').text(this.gameLength);
+            this.model.set('gameLength',this.$el.find('#gamelengthslider').slider("value"));
+            this.$el.find('#gamelength').text(this.model.get('gameLength'));
         },
 
         render: function () {
             var templateResult, self;
             templateResult = this.template();
             this.$el.append(templateResult);
+            this.$el.find('#characterselector').val(this.model.get('characterSet'));
             this.$el.find('#keyboardselector').val($('#keyboardstylesheet').attr('href'));
             self = this;
             this.$el.find('#gamelengthslider').slider({
-                value: this.gameLength,
+                value: this.model.get('gameLength'),
                 min: 1,
                 max: 100,
                 step: 1,

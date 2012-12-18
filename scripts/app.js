@@ -3,16 +3,19 @@ define([
   'jquery',
   'backbone',
   'Router',
+  'models/ConfigModel',
   'collections/FlashcardCollection',
   'views/PageView',
   'views/ConfigureView',
   'Extensions',
   'Helpers'
-], function( $, Backbone, Router, FlashcardCollection, PageView, ConfigureView){
+], function( $, Backbone, Router, ConfigModel, FlashcardCollection, PageView, ConfigureView){
   var initialize = function(){
-    var initGame, currentView, switchView, appRouter, configureTemplate;
+    var initGame, gameConfig, currentView, switchView, appRouter, configureTemplate;
 
     appRouter = new Router();
+
+    gameConfig = new ConfigModel();
 
     switchView = function(newView) {
         if (currentView) currentView.close();
@@ -38,7 +41,8 @@ define([
     appRouter.on('route:configure', function() {
         configureView = new ConfigureView({
           tagName : 'article',
-          router : appRouter
+          router : appRouter,
+          model : gameConfig
         });
         switchView(configureView);
     });

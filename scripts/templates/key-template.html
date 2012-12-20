@@ -1,3 +1,8 @@
 <div id="key" class="{{type}}">
 	<span id="keydisplay">{{character}}</span>
 </div>
+{{if #phrase}}
+<audio preload="auto" autoplay>
+	<source src="http://tts-api.com/tts.mp3?q={{phrase}}" type="audio/mpeg">
+</audio>
+{{/if}}

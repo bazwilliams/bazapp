@@ -53,13 +53,30 @@ define([
             return this.at(nextId);
         },
 
+        getPhrase: function(style, c) {
+            var phraseprefix;
+            if (style === 'number') {
+                phraseprefix = 'Press the number';
+            } else {
+                phraseprefix = 'Press the letter';
+            }
+
+            //Ensure the British pronounciation of z :^)
+            if (c === 'z') {
+                return phraseprefix + ' zed';
+            } else {
+                return phraseprefix + ' ' +c;
+            } 
+        },
+
         addCards: function(letters, style) {
             var self = this;
             letters.split('').forEach( function (c) {
                 var model = new FlashcardModel({
                     type: style,
                     character: c,
-                    id: c
+                    id: c,
+                    phrase: self.getPhrase(style, c)
                 });
                 self.add(model);
             });

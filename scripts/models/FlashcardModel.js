@@ -6,7 +6,8 @@ define([
             success: 0,
             failure: 0,
             type: '',
-            character: ''
+            character: '',
+            phrase: ''
         },
 
         getScore: function() {

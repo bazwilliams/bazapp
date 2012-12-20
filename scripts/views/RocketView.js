@@ -37,7 +37,6 @@ define([
         },
 
         changeFlame: function () {
-
             $('#rocket').removeClass('attempt-0')
                         .removeClass('attempt-1')
                         .removeClass('attempt-2')

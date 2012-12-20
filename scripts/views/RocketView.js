@@ -36,17 +36,13 @@ define([
             if (height <= 0) this.collection.trigger('complete');
         },
 
-        images: [ 'url(images/rocket-full.png)', 
-                  'url(images/rocket-medium.png)', 
-                  'url(images/rocket-low.png)' ],
-
         changeFlame: function () {
-            $('#rocket').animate({
-                'backgroundImage': this.images[this.collection.attempt]
-            }, {
-                duration: 50
-            });
-            $('#rocket').css('background-image',this.images[this.collection.attempt]);
+
+            $('#rocket').removeClass('attempt-0')
+                        .removeClass('attempt-1')
+                        .removeClass('attempt-2')
+                        .removeClass('attempt-3')
+                        .addClass('attempt-'+this.collection.attempt);
         },
 
         updateScore: function() {

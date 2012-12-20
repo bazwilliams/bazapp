@@ -115,7 +115,24 @@ article > div {
 	background-repeat: no-repeat;
 }
 
+#rocket.attempt-0 {
+	background-position: -240px 0;
+}
+
+#rocket.attempt-1 {
+	background-position: -120px 0;
+}
+
+#rocket.attempt-2 {
+	background-position: 0 0;
+}
+
+#rocket.attempt-3 {
+	background-position: 0 0;
+}
+
 #rocket {
+	background-position: 0 0;
 	position: relative;
 	top: 260px;
 	padding-top: 50px;
@@ -126,7 +143,7 @@ article > div {
 	height: 560px;
 	margin: 30px;
 	background-repeat:no-repeat;
-	background-image:url(../images/rocket-full.png);
+	background-image:url(../images/rocket-combined.png);
 }
 
 #key {

@@ -49,24 +49,24 @@ define([
 
     appRouter.on('route:letters', function(gameSpeed) {
         pageView = initGame(gameSpeed);
-        pageView.collection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
-        pageView.collection.addCards('AEIOU','vowel');
+        pageView.collection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant', gameConfig.get('audio'));
+        pageView.collection.addCards('AEIOU','vowel', gameConfig.get('audio'));
         pageView.displayNewCard();
         switchView(pageView);
     });
 
     appRouter.on('route:numbers', function(gameSpeed) {
         pageView = initGame(gameSpeed);
-        pageView.collection.addCards('0123456789','number');
+        pageView.collection.addCards('0123456789','number', gameConfig.get('audio'));
         pageView.displayNewCard();
         switchView(pageView);
     });
 
     appRouter.on('route:all', function(gameSpeed) {
         pageView = initGame(gameSpeed);
-        pageView.collection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant');
-        pageView.collection.addCards('AEIOU','vowel');
-        pageView.collection.addCards('0123456789','number');
+        pageView.collection.addCards('BCDFGHJKLMNPQRSTVWXYZ','consonant', gameConfig.get('audio'));
+        pageView.collection.addCards('AEIOU','vowel', gameConfig.get('audio'));
+        pageView.collection.addCards('0123456789','number', gameConfig.get('audio'));
         pageView.displayNewCard();
         switchView(pageView);
     });

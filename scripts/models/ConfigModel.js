@@ -5,7 +5,7 @@ define([
         defaults: {
             gameLength: 20,
             characterSet: 'all',
-            audio: true
+            audio: false
         }
     });
     

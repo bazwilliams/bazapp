@@ -12,6 +12,7 @@ define([
         events: {
             'change #keyboardselector' : 'changeKeyboardTheme',
             'change #characterselector' : 'setCharacterSet',
+            'change #gameaudiocheckbox' : 'setAudioSetting',
             'click #startgame' : 'startGame'
         },
 
@@ -21,6 +22,10 @@ define([
 
         setCharacterSet: function() {
             this.model.set('characterSet', this.$el.find('#characterselector').val());
+        },
+
+        setAudioSetting: function() {
+            this.model.set('audio', this.$el.find('#gameaudiocheckbox').attr('checked') === 'checked');
         },
 
         startGame: function() {
@@ -42,6 +47,12 @@ define([
             this.$el.append(templateResult);
             this.$el.find('#characterselector').val(this.model.get('characterSet'));
             this.$el.find('#keyboardselector').val($('#keyboardstylesheet').attr('href'));
+            if (this.model.get('audio')) {
+                this.$el.find('#gameaudiocheckbox').attr('checked', 'checked');
+            } else {
+                this.$el.find('#gameaudiocheckbox').removeAttr('checked');
+            }
+
             self = this;
             this.$el.find('#gamelengthslider').slider({
                 value: this.model.get('gameLength'),

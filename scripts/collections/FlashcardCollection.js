@@ -53,31 +53,35 @@ define([
             return this.at(nextId);
         },
 
-        getPhrase: function(style, c) {
+        getSpokenPhrase: function(style, c) {
             var phraseprefix;
             if (style === 'number') {
-                phraseprefix = 'Press the number';
+                phraseprefix = 'Number';
             } else {
-                phraseprefix = 'Press the letter';
+                phraseprefix = 'Letter, ';
             }
 
-            //Ensure the British pronounciation of z :^)
-            if (c === 'z') {
+            //Tweak pronounciations :^)
+            if (c === 'Z') {
                 return phraseprefix + ' zed';
+            } else if (c === 'I') {
+                return phraseprefix + ' eye';
             } else {
                 return phraseprefix + ' ' +c;
             } 
         },
 
-        addCards: function(letters, style) {
+        addCards: function(letters, style, speech) {
             var self = this;
             letters.split('').forEach( function (c) {
                 var model = new FlashcardModel({
                     type: style,
                     character: c,
-                    id: c,
-                    phrase: self.getPhrase(style, c)
+                    id: c
                 });
+                if (speech) {
+                    model.set('phrase',self.getSpokenPhrase(style, c));
+                }
                 self.add(model);
             });
         }

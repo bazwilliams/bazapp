@@ -66,6 +66,9 @@ define([
                 return phraseprefix + ' zed';
             } else if (c === 'I') {
                 return phraseprefix + ' eye';
+            } else if (c === 'E') {
+                return phraseprefix + ' eee';
+            }
             } else {
                 return phraseprefix + ' ' +c;
             } 

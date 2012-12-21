@@ -7,6 +7,10 @@ define([
     var FlashcardView = Backbone.View.extend({
         template: Handlebars.compile(KeyTemplate),
 
+        events: {
+            'click #key' : 'play'
+        },
+
         initialize: function () {
             this.render();
         },
@@ -14,10 +18,14 @@ define([
         render: function () {
             var templateResult = this.template(this.model.toJSON());
             $(this.el).append(templateResult);
+            this.play();
+            return this;
+        },
+
+        play: function() {
             if (this.model.get('phrase')) {
                 this.$el.find('audio').get(0).play();
             }
-            return this;
         }
     });
 

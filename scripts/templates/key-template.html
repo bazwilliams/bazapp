@@ -3,6 +3,7 @@
 </div>
 {{#if phrase}}
 <audio preload="auto">
-	<source src="http://tts-api.com/tts.mp3?q={{phrase}}" type="audio/mpeg"/>
+	<source src="http://translate.google.com/translate_tts?q={{phrase}}&tl=en" type="audio/mpeg"/>
+	<!--<source src="http://tts-api.com/tts.mp3?q={{phrase}}" type="audio/mpeg"/>-->
 </audio>
 {{/if}}

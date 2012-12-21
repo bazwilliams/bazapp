@@ -10,7 +10,7 @@ The first time I showed this to my son, he wanted to play "Letters and Press But
 
 The application supports showing just characters, numbers, or both and it supports 2 keyboard themes (Duragadget and Black keys). 
 
-Now supports text to speech, speaking "Letter, X" or "Number 0" when a new character is displayed. 
+Now supports text to speech, speaking "Letter, X" or "Number 0" when a new character is displayed. Clicking the character will replay the phrase. 
 
 The release version (gh-pages branch) of the application can be viewed at:
 

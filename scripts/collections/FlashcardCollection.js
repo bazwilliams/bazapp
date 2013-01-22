@@ -2,8 +2,8 @@ define([
   'jquery',
   'backbone',
   'models/FlashcardModel',
-  'Dictionary'
-], function($, Backbone, FlashcardModel, Dictionary){
+  'dictionary'
+], function($, Backbone, FlashcardModel, dictionary){
     var FlashcardCollection = Backbone.Collection.extend({
         model: FlashcardModel,
 
@@ -68,7 +68,7 @@ define([
         },
 
         getExamplePhrase: function(style, c) {
-            var word = Dictionary(c);
+            var word = dictionary(c);
 
             if (style !== 'number') {
                 return this.getCharacter(c) + ' is for ' + word + '!';

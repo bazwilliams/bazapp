@@ -1,8 +1,7 @@
 define([
-  'underscore',
   'jquery',
   'text!../data/dictionary2.json'
-], function(_, $, data){
+], function($, data){
 		var dict = $.parseJSON(data);
 		var getWord = function (character) {
 			var candidates,selected;

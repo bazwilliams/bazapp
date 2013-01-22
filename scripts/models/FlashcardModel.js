@@ -7,7 +7,8 @@ define([
             failure: 0,
             type: '',
             character: '',
-            phrase: ''
+            phrase: '',
+            example: ''
         },
 
         getScore: function() {

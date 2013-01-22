@@ -2,8 +2,12 @@
 	<span id="keydisplay">{{character}}</span>
 </div>
 {{#if phrase}}
-<audio preload="auto">
-	<!--<source src="http://translate.google.com/translate_tts?q=The%20Letter%20B&tl=en" type="audio/mpeg"/>-->
+<audio id="phrase" preload="auto">
 	<source src="http://tts-api.com/tts.mp3?q={{phrase}}" type="audio/mpeg"/>
+</audio>
+{{/if}}
+{{#if example}}
+<audio id="example" preload="auto">
+	<source src="http://tts-api.com/tts.mp3?q={{example}}" type="audio/mpeg"/>
 </audio>
 {{/if}}

@@ -24,7 +24,10 @@ define([
 
         play: function() {
             if (this.model.get('phrase')) {
-                this.$el.find('audio').get(0).play();
+                this.$el.find('#phrase').get(0).play();
+            }
+            if (this.model.get('example')) {
+                this.$el.find('#example').get(0).play();
             }
         }
     });

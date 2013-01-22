@@ -1,8 +1,9 @@
 define([
   'jquery',
   'backbone',
-  'models/FlashcardModel'
-], function($, Backbone, FlashcardModel){
+  'models/FlashcardModel',
+  'Dictionary'
+], function($, Backbone, FlashcardModel, Dictionary){
     var FlashcardCollection = Backbone.Collection.extend({
         model: FlashcardModel,
 
@@ -53,28 +54,42 @@ define([
             return this.at(nextId);
         },
 
+        getCharacter: function(c) {
+            //Tweak pronounciations :^)
+            if (c === 'Z') {
+                return 'zed';
+            } else if (c === 'I') {
+                return 'eye';
+            } else if (c === 'E') {
+                return 'eee';
+            } else {
+                return c;
+            }
+        },
+
+        getExamplePhrase: function(style, c) {
+            var word = Dictionary(c);
+
+            if (style !== 'number') {
+                return this.getCharacter(c) + ' is for ' + word + '!';
+            }
+        },
+
         getSpokenPhrase: function(style, c) {
-            var phraseprefix;
+            var phraseprefix, character;
+
             if (style === 'number') {
                 phraseprefix = 'Number';
             } else {
                 phraseprefix = 'Letter, ';
             }
 
-            //Tweak pronounciations :^)
-            if (c === 'Z') {
-                return phraseprefix + ' zed';
-            } else if (c === 'I') {
-                return phraseprefix + ' eye';
-            } else if (c === 'E') {
-                return phraseprefix + ' eee';
-            } else {
-                return phraseprefix + ' ' +c;
-            } 
+            return phraseprefix + ' ' + this.getCharacter(c) + '. ';
         },
 
         addCards: function(letters, style, speech) {
-            var self = this;
+            var self, phrase, example;
+            self = this;
             letters.split('').forEach( function (c) {
                 var model = new FlashcardModel({
                     type: style,
@@ -82,7 +97,9 @@ define([
                     id: c
                 });
                 if (speech) {
-                    model.set('phrase',self.getSpokenPhrase(style, c));
+                    phrase = self.getSpokenPhrase(style, c);
+                    example = self.getExamplePhrase(style,c);
+                    model.set('phrase', phrase + '. ' + (example?example:''));
                 }
                 self.add(model);
             });

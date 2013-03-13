@@ -31,3 +31,7 @@ http://www.clker.com/clipart-rocket-bigflame.html
 Text to Speech API:
 
 http://tts-api.com/
+
+Licence:
+
+http://opensource.org/licenses/Apache-2.0

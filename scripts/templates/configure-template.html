@@ -4,12 +4,14 @@
 	<p>The game is hosted on github (<a href="https://github.com/bazwilliams/bazapp">https://github.com/bazwilliams/bazapp)</a></p>
 	<p>Configure your game below, the duragadget theme is styled similar to <a href="http://duragadget.com/products/large-coloured-child-proof-usb-computerlaptoppc-keyboard--w-big-keys-for-kids.html">Duragadget's child proof keyboard</a>, the black keys are themed based on a macbook keyboard.  The currently displayed key can be spoken if configured below when each is displayed; clicking the key will repeat the phrase. The game length slider adjusts how many steps the rocket must take to complete the game.</p>
 	<form>
-		<label class="control">Select Your Keyboard Style
-		<select id="keyboardselector" name="keyboardtype">
-			<option value="stylesheets/duragadget.css">Duragadget</option>
-			<option value="stylesheets/blackkeys.css">Black</option>
-		</select>
-		</label>
+		<div class="control">
+			<label>Select Your Keyboard Style
+				<select id="keyboardselector" name="keyboardtype">
+					<option value="stylesheets/duragadget.css">Duragadget</option>
+					<option value="stylesheets/blackkeys.css">Black</option>
+				</select>
+			</label>
+		</div>
 		
 		<div class="control" id="keyboardchoice">
 			<div class="consonant character">Q</div>
@@ -23,27 +25,29 @@
 			<div class="number character">3</div>
 		</div>
 		
-		<label class="control">Select Your Game
-		<select id="characterselector">
-			<option value="">Letters and Numbers</option>
-			<option value="letters">Letters</option>
-			<option value="numbers">Numbers</option>
-		</select>
-		</label>
-
-		<div class="control" id="gameaudiocontrol">
-			<label>Speak Letter or Number?
-				<input type="checkbox" id="gameaudiocheckbox">
-			</label>
-		
-		<div class="control" id="gamelengthslidercontrol">
-			<label>Length of Game
-				<div id="gamelengthslider"/>
-				<span id="gamelength"/>
+		<div class="control">
+			<label>Select Your Game
+				<select id="characterselector">
+					<option value="">Letters and Numbers</option>
+					<option value="letters">Letters</option>
+					<option value="numbers">Numbers</option>
+				</select>
 			</label>
 		</div>
 
-		<div class="control" id="startgame">
+		<div class="control">
+			<label>Speak Letter or Number?
+				<input type="checkbox" id="gameaudiocheckbox">
+			</label>
+		</div>
+		
+		<div class="control">
+			<label>Length of Game
+				<input type="range" id="gamelengthslider" min="1" value="20" max="100">
+			</label>
+		</div>
+
+		<div class="control" role="button" id="startgame">
 			<a>Play the Game!</a>
 		</div>
 	</form>

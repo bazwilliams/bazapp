@@ -13,6 +13,7 @@ define([
 
         initialize: function () {
             this.render();
+            this.model.listenTo('changed:failure', this.retry);
         },
 
         render: function () {
@@ -21,6 +22,12 @@ define([
             this.play();
             return this;
         },
+
+	retry: function() {
+	    if (this.model.get('retry')) {
+                this.$el.find('#retry').get(0).play();
+	    }
+	},
 
         play: function() {
             if (this.model.get('phrase')) {

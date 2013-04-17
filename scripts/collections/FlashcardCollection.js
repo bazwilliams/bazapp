@@ -67,6 +67,10 @@ define([
             }
         },
 
+        getRetryPhrase: function(style, c) {
+            return "Try again! " + getSpokenPhrase(style, c);
+        },
+
         getExamplePhrase: function(style, c) {
             var word = dictionary(c);
 
@@ -97,6 +101,7 @@ define([
                     id: c
                 });
                 if (speech) {
+		    retry = self.getRetryPhrase(style, c);
                     phrase = self.getSpokenPhrase(style, c);
                     example = self.getExamplePhrase(style,c);
                     model.set('phrase', phrase + '. ' + (example?example:''));

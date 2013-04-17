@@ -1,10 +1,9 @@
 define([
     'jquery',
-    'jquery-ui',
     'backbone',
     'handlebars',
     'text!templates/configure-template.html'
-], function($, jqueryui, Backbone, Handlebars, ConfigureTemplate){
+], function($, Backbone, Handlebars, ConfigureTemplate){
     var ConfigureView = Backbone.View.extend({
 
         template: Handlebars.compile(ConfigureTemplate),
@@ -36,11 +35,6 @@ define([
             this.render();
         },
 
-        updateGameLength: function () {
-            this.model.set('gameLength',this.$el.find('#gamelengthslider').slider("value"));
-            this.$el.find('#gamelength').text(this.model.get('gameLength'));
-        },
-
         render: function () {
             var templateResult, self;
             templateResult = this.template();
@@ -52,18 +46,7 @@ define([
             } else {
                 this.$el.find('#gameaudiocheckbox').removeAttr('checked');
             }
-
-            self = this;
-            this.$el.find('#gamelengthslider').slider({
-                value: this.model.get('gameLength'),
-                min: 1,
-                max: 100,
-                step: 1,
-                slide: function( event, ui ) {
-                    self.updateGameLength();
-                }
-            });
-            this.updateGameLength();
+            this.$el.find('#gamelengthslider').val(this.model.get('gameLength'));
             return this;
         }
     });

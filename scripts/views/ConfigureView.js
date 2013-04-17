@@ -4,7 +4,7 @@ define([
     'handlebars',
     'text!templates/configure-template.html'
 ], function($, Backbone, Handlebars, ConfigureTemplate){
-    var ConfigureView = Backbone.View.extend({
+    return Backbone.View.extend({
 
         template: Handlebars.compile(ConfigureTemplate),
 
@@ -12,6 +12,7 @@ define([
             'change #keyboardselector' : 'changeKeyboardTheme',
             'change #characterselector' : 'setCharacterSet',
             'change #gameaudiocheckbox' : 'setAudioSetting',
+            'change #gamelengthslider' : 'setGameLength',
             'click #startgame' : 'startGame'
         },
 
@@ -27,6 +28,10 @@ define([
             this.model.set('audio', this.$el.find('#gameaudiocheckbox').attr('checked') === 'checked');
         },
 
+        setGameLength: function() {
+            this.model.set('gameLength', this.$el.find('#gamelengthslider').val());
+        },
+
         startGame: function() {
             this.options.router.navigate(this.model.get('characterSet') + '/' + this.model.get('gameLength'), {trigger: true});
         },
@@ -36,9 +41,7 @@ define([
         },
 
         render: function () {
-            var templateResult, self;
-            templateResult = this.template();
-            this.$el.append(templateResult);
+            this.$el.append(this.template(this.model.toJSON()));
             this.$el.find('#characterselector').val(this.model.get('characterSet'));
             this.$el.find('#keyboardselector').val($('#keyboardstylesheet').attr('href'));
             if (this.model.get('audio')) {
@@ -50,7 +53,4 @@ define([
             return this;
         }
     });
-
-    return ConfigureView;
-	
 });

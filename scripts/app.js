@@ -11,7 +11,7 @@ define([
   'Helpers'
 ], function( $, Backbone, Router, ConfigModel, FlashcardCollection, PageView, ConfigureView){
   var initialize = function(){
-    var initGame, gameConfig, currentView, switchView, appRouter, configureTemplate;
+    var initGame, gameConfig, currentView, switchView, appRouter, cardCollection, pageView, configureView;
 
     appRouter = new Router();
 
@@ -21,7 +21,7 @@ define([
         if (currentView) currentView.close();
         currentView = newView;
         $(document).find('section').append(currentView.el);
-    }
+    };
 
     initGame = function(gameSpeed) {
       cardCollection = new FlashcardCollection();
@@ -72,7 +72,7 @@ define([
     });
 
     Backbone.history.start({root: 'characters.html'});
-  }
+  };
 
   return {
     initialize: initialize

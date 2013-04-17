@@ -4,7 +4,7 @@ define([
   'models/FlashcardModel',
   'dictionary'
 ], function($, Backbone, FlashcardModel, dictionary){
-    var FlashcardCollection = Backbone.Collection.extend({
+    return Backbone.Collection.extend({
         model: FlashcardModel,
 
         initialize : function() {
@@ -68,7 +68,7 @@ define([
         },
 
         getRetryPhrase: function(style, c) {
-            return "Try again! " + getSpokenPhrase(style, c);
+            return "Try again! " + this.getSpokenPhrase(style, c);
         },
 
         getExamplePhrase: function(style, c) {
@@ -77,10 +77,11 @@ define([
             if (style !== 'number') {
                 return this.getCharacter(c) + ' is for ' + word + '!';
             }
+            return undefined;
         },
 
         getSpokenPhrase: function(style, c) {
-            var phraseprefix, character;
+            var phraseprefix;
 
             if (style === 'number') {
                 phraseprefix = 'Number';
@@ -92,7 +93,7 @@ define([
         },
 
         addCards: function(letters, style, speech) {
-            var self, phrase, example;
+            var self, phrase, example, retry;
             self = this;
             letters.split('').forEach( function (c) {
                 var model = new FlashcardModel({
@@ -101,7 +102,8 @@ define([
                     id: c
                 });
                 if (speech) {
-		    retry = self.getRetryPhrase(style, c);
+                    retry = self.getRetryPhrase(style, c);
+                    model.set('retry', retry);
                     phrase = self.getSpokenPhrase(style, c);
                     example = self.getExamplePhrase(style,c);
                     model.set('phrase', phrase + '. ' + (example?example:''));
@@ -110,6 +112,4 @@ define([
             });
         }
     });
-
-	return FlashcardCollection;
 });

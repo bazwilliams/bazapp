@@ -4,7 +4,7 @@ define([
     'handlebars',
     'text!templates/key-template.html'
 ], function($, Backbone, Handlebars, KeyTemplate){
-    var FlashcardView = Backbone.View.extend({
+    return Backbone.View.extend({
         template: Handlebars.compile(KeyTemplate),
 
         events: {
@@ -12,22 +12,22 @@ define([
         },
 
         initialize: function () {
+            this.listenTo(this.model, 'failure', this.retry);
             this.render();
-            this.model.listenTo('changed:failure', this.retry);
+            this.play();
         },
 
         render: function () {
             var templateResult = this.template(this.model.toJSON());
             $(this.el).append(templateResult);
-            this.play();
             return this;
         },
 
-	retry: function() {
-	    if (this.model.get('retry')) {
+        retry: function() {
+            if (this.model.get('retry')) {
                 this.$el.find('#retry').get(0).play();
-	    }
-	},
+            }
+        },
 
         play: function() {
             if (this.model.get('phrase')) {
@@ -38,7 +38,4 @@ define([
             }
         }
     });
-
-    return FlashcardView;
-	
 });

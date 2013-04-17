@@ -5,7 +5,7 @@ define([
     'views/FlashcardView',
     'views/ScoresView'
 ], function($, Backbone, RocketView, FlashcardView, ScoresView){
-    var PageView = Backbone.View.extend({
+    return Backbone.View.extend({
 
         initialize: function () {
             var self, keyReleased;
@@ -30,7 +30,7 @@ define([
                 }
             });
 
-            $(document).bind('keyup.flashcard', function (e) {
+            $(document).bind('keyup.flashcard', function () {
                 keyReleased = true;
             });
 
@@ -57,8 +57,6 @@ define([
         },
 
         handleComplete: function() {
-            var scoresView;
-
             this.gameComplete = true;
             this.rocketView.close();
             this.currentFlashCard.close();
@@ -86,6 +84,7 @@ define([
                 return true;
             }
             else {
+                this.currentFlashCard.model.trigger('failure');
                 if (this.collection.attempt === 1) {
                     failure = this.currentFlashCard.model.get('failure')+1;
                     this.currentFlashCard.model.set('failure',failure);
@@ -124,7 +123,4 @@ define([
             this.currentFlashCard = newCardView;
         }
     });
-
-	return PageView;
-	
 });

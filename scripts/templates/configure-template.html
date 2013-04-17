@@ -43,7 +43,8 @@
 		
 		<div class="control">
 			<label>Length of Game
-				<input type="range" id="gamelengthslider" min="1" value="20" max="100">
+				<input type="range" id="gamelengthslider" name="gameLengthSlider" min="1" value="{{gameLength}}" max="100" onchange="gameLength.value = gameLengthSlider.valueAsNumber">
+                <output for="gamelengthslider" name="gameLength">{{gameLength}}</output>
 			</label>
 		</div>
 

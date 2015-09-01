@@ -1,13 +1,11 @@
 define([
   'backbone'
 ], function(Backbone){
-    var ConfigModel = Backbone.Model.extend({
+    return Backbone.Model.extend({
         defaults: {
             gameLength: 20,
-            characterSet: 'all',
-            audio: false
+            characterSet: 'p1',
+            audio: true
         }
     });
-    
-    return ConfigModel;
 });

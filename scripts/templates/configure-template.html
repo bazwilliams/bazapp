@@ -1,8 +1,8 @@
 <div id="configure">
-	<h1>Letters and Numbers</h1>
-	<p>This is a game to familiarise people with a keyboard, it is aimed at children and supports the 26 letters of the english alphabet and numbers 0 to 9. The application will display a keyboard key and the player must press the correct key to allow the rocket ship to travel up the page. A score is shown when the ship reaches the top. The engine attempts to favour those characters that have been incorrectly guessed; all played keys are shown in a score page once the rocket has reached the top of the page.</p>
+	<h1>P1 Numeracy and Phonetics</h1>
+	<p>This is a game to familiarise people with a keyboard, it is aimed at children and is restricted to the letters currently being taught to P1 in Glasgow. The application will display a keyboard key and the player must press the correct key to allow the rocket ship to travel up the page. A score is shown when the ship reaches the top. The engine attempts to favour those characters that have been incorrectly guessed; all played keys are shown in a score page once the rocket has reached the top of the page.</p>
 	<p>The game is hosted on github (<a href="https://github.com/bazwilliams/bazapp">https://github.com/bazwilliams/bazapp)</a></p>
-	<p>Configure your game below, the duragadget theme is styled similar to <a href="http://duragadget.com/products/large-coloured-child-proof-usb-computerlaptoppc-keyboard--w-big-keys-for-kids.html">Duragadget's child proof keyboard</a>, the black keys are themed based on a macbook keyboard.  The currently displayed key can be spoken if configured below when each is displayed; clicking the key will repeat the phrase. The game length slider adjusts how many steps the rocket must take to complete the game.</p>
+	<p>Configure your game below, the duragadget theme is styled similar to <a href="http://duragadget.co.uk/gadgets/duragadget-children-s-learning-pc-keyboard-with-large-colourful-keys.html">Duragadget's child proof keyboard</a>, the black keys are themed based on a macbook keyboard.  The currently displayed key can be spoken if configured below when each is displayed; clicking the key will repeat the phrase. The game length slider adjusts how many steps the rocket must take to complete the game.</p>
 	<form>
 		<div class="control">
 			<label>Select Your Keyboard Style
@@ -25,19 +25,21 @@
 			<div class="number character">3</div>
 		</div>
 		
-		<div class="control">
-			<label>Select Your Game
-				<select id="characterselector">
-					<option value="">Letters and Numbers</option>
-					<option value="letters">Letters</option>
-					<option value="numbers">Numbers</option>
-				</select>
-			</label>
-		</div>
+		<!--<div class="control">-->
+			<!--<label>Select Your Game-->
+				<!--<select id="characterselector">-->
+					<!--<option value="p1">Glasgow Primary 1</option>-->
+					<!--<option value="">Letters and Numbers</option>-->
+					<!--<option value="letters">Letters</option>-->
+					<!--<option value="numbers">Numbers</option>-->
+				<!--</select>-->
+			<!--</label>-->
+		<!--</div>-->
+		<input type="hidden" id="characterselector" value="p1"/>
 
 		<div class="control">
 			<label>Speak Letter or Number?
-				<input type="checkbox" id="gameaudiocheckbox">
+				<input type="checkbox" id="gameaudiocheckbox" checked>
 			</label>
 		</div>
 		

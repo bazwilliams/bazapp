@@ -1,14 +1,13 @@
 define([
   'backbone'
 ], function(Backbone){
-	var Router = Backbone.Router.extend({
+	return Backbone.Router.extend({
         routes: {
             'letters/:number' : 'letters',
             'numbers/:number' : 'numbers',
             'all/:number'  : 'all',
+            'p1/:number' : 'p1',
             '' : 'configure'
         }
     });
-
-    return Router;
 });

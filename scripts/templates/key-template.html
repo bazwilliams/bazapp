@@ -3,16 +3,16 @@
 </div>
 {{#if phrase}}
 <audio id="phrase" preload="auto">
-	<source src="http://tts-api.com/tts.mp3?q={{phrase}}" type="audio/mpeg"/>
+	<source src="https://api.voicerss.org/?key=7b35ee1de4114fe59052576dc8a982f1&f=44khz_16bit_mono&hl=en-gb&src={{phrase}}" type="audio/mpeg"/>
 </audio>
 {{/if}}
 {{#if example}}
 <audio id="example" preload="auto">
-	<source src="http://tts-api.com/tts.mp3?q={{example}}" type="audio/mpeg"/>
+	<source src="https://api.voicerss.org/?key=7b35ee1de4114fe59052576dc8a982f1&f=44khz_16bit_mono&hl=en-gb&src={{example}}" type="audio/mpeg"/>
 </audio>
 {{/if}}
 {{#if retry}}
 <audio id="retry" preload="auto">
-        <source src="http://tts-api.com/tts.mp3?q={{retry}}" type="audio/mpeg"/>
+        <source src="https://api.voicerss.org/?key=7b35ee1de4114fe59052576dc8a982f1&f=44khz_16bit_mono&hl=en-gb&src={{retry}}" type="audio/mpeg"/>
 </audio>
 {{/if}}

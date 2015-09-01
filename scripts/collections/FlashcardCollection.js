@@ -55,15 +55,22 @@ define([
         },
 
         getCharacter: function(c) {
-            //Tweak pronounciations :^)
-            if (c === 'Z') {
-                return 'zed';
-            } else if (c === 'I') {
-                return 'eye';
-            } else if (c === 'E') {
-                return 'eee';
-            } else {
-                return c;
+            //phonetics :^)
+            switch (c) {
+                case 'S':
+                    return 'issssssssssss';
+                case 'T':
+                    return 'Tuh';
+                case 'N':
+                    return 'Nur';
+                case 'I':
+                    return 'Ih';
+                case 'A':
+                    return 'Aah';
+                case 'P':
+                    return 'Pur';
+                default:
+                    return c;
             }
         },
 
@@ -81,15 +88,7 @@ define([
         },
 
         getSpokenPhrase: function(style, c) {
-            var phraseprefix;
-
-            if (style === 'number') {
-                phraseprefix = 'Number';
-            } else {
-                phraseprefix = 'Letter, ';
-            }
-
-            return phraseprefix + ' ' + this.getCharacter(c) + '. ';
+            return this.getCharacter(c) + '. ';
         },
 
         addCards: function(letters, style, speech) {

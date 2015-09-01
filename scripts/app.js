@@ -71,6 +71,14 @@ define([
         switchView(pageView);
     });
 
+      appRouter.on('route:p1', function(gameSpeed) {
+          pageView = initGame(gameSpeed);
+          pageView.collection.addCards('STPN','consonant', gameConfig.get('audio'));
+          pageView.collection.addCards('AI','vowel', gameConfig.get('audio'));
+          pageView.displayNewCard();
+          switchView(pageView);
+      });
+
     Backbone.history.start({root: 'characters.html'});
   };
 

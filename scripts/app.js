@@ -79,7 +79,7 @@ define([
           switchView(pageView);
       });
 
-    Backbone.history.start({root: 'characters.html'});
+    Backbone.history.start({root: 'index.html'});
   };
 
   return {
